@@ -1,5 +1,7 @@
+import { registerAction } from './../../store/actions';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'bc-register',
@@ -9,7 +11,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RegisterComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private readonly fb: FormBuilder) {}
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly store: Store
+  ) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -24,6 +29,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const obj = this.form.value;
+    this.store.dispatch(registerAction(this.form.value));
   }
 }
