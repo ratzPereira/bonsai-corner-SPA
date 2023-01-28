@@ -1,7 +1,9 @@
+import { isSubmittingSelector } from './../../store/selectors';
 import { registerAction } from './../../store/actions';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'bc-register',
@@ -10,6 +12,7 @@ import { Store } from '@ngrx/store';
 })
 export class RegisterComponent implements OnInit {
   form: FormGroup;
+  isSubmitting$: Observable<boolean>;
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -18,6 +21,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeForm();
+    this.initializeValues();
   }
 
   initializeForm(): void {
@@ -30,5 +34,9 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
     this.store.dispatch(registerAction(this.form.value));
+  }
+
+  initializeValues() {
+    this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
   }
 }
