@@ -1,3 +1,5 @@
+import { CurrentUserInterface } from './../../../shared/types/currentUser.interface';
+import { AuthService } from './../../services/auth.service';
 import { isSubmittingSelector } from './../../store/selectors';
 import { registerAction } from './../../store/actions';
 import { Component, OnInit } from '@angular/core';
@@ -16,7 +18,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly store: Store
+    private readonly store: Store,
+    private readonly authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +37,11 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
     this.store.dispatch(registerAction(this.form.value));
+    this.authService
+      .register(this.form.value)
+      .subscribe((currentUser: CurrentUserInterface) =>
+        console.log(currentUser)
+      );
   }
 
   initializeValues() {
