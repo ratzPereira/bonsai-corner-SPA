@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   form: FormGroup;
 
   constructor(
-    private readonly fb: FormBuilder,
+    private readonly formBuilder: FormBuilder,
     private readonly store: Store
   ) {}
 
@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   }
 
   initializeForm(): void {
-    this.form = this.fb.group({
+    this.form = this.formBuilder.group({
       username: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],

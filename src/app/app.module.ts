@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
+import { Store } from '@ngrx/store';
+import { StoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [AppComponent],
@@ -12,6 +14,9 @@ import { StoreModule } from '@ngrx/store';
     AppRoutingModule,
     AuthModule,
     StoreModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+    })
   ],
   providers: [],
   bootstrap: [AppComponent],
