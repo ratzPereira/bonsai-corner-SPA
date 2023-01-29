@@ -1,3 +1,4 @@
+import { RegisterEffect } from './store/effects/register.effect';
 import { AuthService } from './services/auth.service';
 import { StoreModule } from '@ngrx/store';
 import { RouterModule } from '@angular/router';
@@ -6,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { reducers } from './store/reducers';
+import { EffectsModule } from '@ngrx/effects';
 
 const routes = [
   {
@@ -20,6 +22,7 @@ const routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     StoreModule.forFeature('auth', reducers),
+    EffectsModule.forFeature([RegisterEffect])
   ],
   declarations: [RegisterComponent],
   providers: [AuthService],

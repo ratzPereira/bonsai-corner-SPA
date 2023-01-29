@@ -1,7 +1,8 @@
+import { RegisterRequestInterface } from './../../types/register.request.interface';
 import { CurrentUserInterface } from './../../../shared/types/currentUser.interface';
 import { AuthService } from './../../services/auth.service';
 import { isSubmittingSelector } from './../../store/selectors';
-import { registerAction } from './../../store/actions';
+import { registerAction } from '../../store/actions/register.action';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
@@ -36,7 +37,8 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.store.dispatch(registerAction(this.form.value));
+    const request: RegisterRequestInterface = this.form.value;
+    this.store.dispatch(registerAction({ request }));
     this.authService
       .register(this.form.value)
       .subscribe((currentUser: CurrentUserInterface) =>
