@@ -1,3 +1,4 @@
+import { BackendObjectInterface } from './../../../shared/types/Backend.errorObject.interface';
 import { BackendErrorsInterface } from './../../../shared/types/backend.errors.interface';
 import { CurrentUserInterface } from './../../../shared/types/currentUser.interface';
 import { RegisterRequestInterface } from '../../types/register.request.interface';
@@ -16,5 +17,5 @@ export const registerSuccessAction = createAction(
 
 export const registerFailedAction = createAction(
   ActionTypes.REGISTER_FAILURE,
-  props<{ errors: BackendErrorsInterface }>()
+  props<{ errors: BackendObjectInterface }>()
 );

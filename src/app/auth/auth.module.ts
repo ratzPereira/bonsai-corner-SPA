@@ -1,3 +1,4 @@
+import { BackendErrorsModule } from './../shared/modules/backendErrorMessages/backendErrorMessages.module';
 import { RegisterEffect } from './store/effects/register.effect';
 import { AuthService } from './services/auth.service';
 import { StoreModule } from '@ngrx/store';
@@ -19,6 +20,7 @@ const routes = [
 @NgModule({
   imports: [
     CommonModule,
+    BackendErrorsModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     StoreModule.forFeature('auth', reducers),

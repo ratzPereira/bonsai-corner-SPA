@@ -1,7 +1,12 @@
+import { BackendObjectInterface } from './../../../shared/types/Backend.errorObject.interface';
+import { BackendErrorsInterface } from './../../../shared/types/backend.errors.interface';
 import { RegisterRequestInterface } from './../../types/register.request.interface';
 import { CurrentUserInterface } from './../../../shared/types/currentUser.interface';
 import { AuthService } from './../../services/auth.service';
-import { isSubmittingSelector } from './../../store/selectors';
+import {
+  isSubmittingSelector,
+  validationErrorsSelector,
+} from './../../store/selectors';
 import { registerAction } from '../../store/actions/register.action';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -16,6 +21,7 @@ import { Observable } from 'rxjs';
 export class RegisterComponent implements OnInit {
   form: FormGroup;
   isSubmitting$: Observable<boolean>;
+  hasErrors$: Observable<BackendObjectInterface | null>;
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -48,5 +54,6 @@ export class RegisterComponent implements OnInit {
 
   initializeValues() {
     this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
+    this.hasErrors$ = this.store.pipe(select(validationErrorsSelector));
   }
 }
