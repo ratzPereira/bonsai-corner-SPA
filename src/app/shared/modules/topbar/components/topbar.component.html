@@ -1,0 +1,39 @@
+<nav class="navbar navbar-light">
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="['/']">Bonsai Corner</a>
+    <ul class="nav navbar-nav pull-xs-right">
+      <li class="nav-item">
+        <a [routerLink]="['/']" class="nav-link">Home</a>
+      </li>
+      <ng-container *ngIf="isLoggedIn$ | async">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/bonsai/new']">
+            <i class="ion-compose"> &nbsp; New post</i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/settings']">
+            <i class="ion-gear-a"> &nbsp; Settings</i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/profile', (currentUser$ | async).username]"
+          >
+            <img [src]="(currentUser$ | async).image" alt="" class="user-pic" />
+            &nbsp; {{ (currentUser$ | async).username }}
+          </a>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="isAnonymous$ | async">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/loggin']"> Login </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/register']"> Sign up </a>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</nav>

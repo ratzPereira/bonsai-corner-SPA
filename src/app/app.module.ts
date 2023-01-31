@@ -1,3 +1,4 @@
+import { TopbarModule } from './shared/modules/topbar/topbar.module';
 import { AuthModule } from './auth/auth.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -15,11 +16,13 @@ import { EffectsModule } from '@ngrx/effects';
     AppRoutingModule,
     HttpClientModule,
     AuthModule,
+
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    TopbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
