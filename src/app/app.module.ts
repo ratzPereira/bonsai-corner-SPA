@@ -1,3 +1,5 @@
+import { PersistenceService } from './shared/services/persistence.service';
+import { AuthInterceptor } from './shared/services/auth.interceptor.service';
 import { TopbarModule } from './shared/modules/topbar/topbar.module';
 import { AuthModule } from './auth/auth.module';
 import { NgModule } from '@angular/core';
@@ -6,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
@@ -24,7 +26,14 @@ import { EffectsModule } from '@ngrx/effects';
     EffectsModule.forRoot([]),
     TopbarModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+    PersistenceService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
