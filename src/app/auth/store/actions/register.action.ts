@@ -1,3 +1,4 @@
+import { LoginRequestInterface } from './../../types/login.request.interface';
 import { BackendObjectInterface } from './../../../shared/types/Backend.errorObject.interface';
 import { BackendErrorsInterface } from './../../../shared/types/backend.errors.interface';
 import { CurrentUserInterface } from './../../../shared/types/currentUser.interface';
@@ -19,3 +20,4 @@ export const registerFailedAction = createAction(
   ActionTypes.REGISTER_FAILURE,
   props<{ errors: BackendObjectInterface }>()
 );
+

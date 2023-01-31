@@ -1,3 +1,4 @@
+import { LoginRequestInterface } from './../types/login.request.interface';
 import { BASE_URL } from './../../shared/const/url.const';
 import { CurrentUserInterface } from './../../shared/types/currentUser.interface';
 import { RegisterRequestInterface } from './../types/register.request.interface';
@@ -14,6 +15,12 @@ export class AuthService {
 
         const url = BASE_URL+ '/auth';
 
+        return this.httpClient.post<CurrentUserInterface>(url, data)
+    }
+
+    login(data: LoginRequestInterface): Observable<CurrentUserInterface> {
+
+        const url = BASE_URL+ '/auth/login';
         return this.httpClient.post<CurrentUserInterface>(url, data)
     }
 }

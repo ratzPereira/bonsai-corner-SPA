@@ -1,5 +1,4 @@
 import { BackendObjectInterface } from './../../../shared/types/Backend.errorObject.interface';
-import { BackendErrorsInterface } from './../../../shared/types/backend.errors.interface';
 import { RegisterRequestInterface } from './../../types/register.request.interface';
 import { CurrentUserInterface } from './../../../shared/types/currentUser.interface';
 import { AuthService } from './../../services/auth.service';
