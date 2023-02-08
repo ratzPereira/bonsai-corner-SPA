@@ -13,3 +13,4 @@ export const getFeedSuccessAction = createAction(
 );
 
 export const getFeedFailureAction = createAction(ActionType.GET_FEED_FAILURE);
+
